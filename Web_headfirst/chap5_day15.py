@@ -1,4 +1,4 @@
-from flask import Flask # 서버 동작에 필요한 flask 모듈 읽어오기
+from flask import Flask, render_template # 서버 동작에 필요한 flask 모듈 읽어오기
 from vsearch import search4letters
 
 app = Flask(__name__) # Flask 객체 생성하여 app 변수명으로 할당
@@ -15,5 +15,15 @@ def hello() -> str:
 @app.route('/search4')
 def do_search() -> str:
     return str(search4letters('life is the universe and everything','eiru'))
+
+@app.route('/entry')
+def do_search() -> 'html':
+    return render_template(
+        'entry.html', 
+        the_title = 'Welcom to search4letters on the web!'
+        )
+
+
+
 
 app.run()
